@@ -3,8 +3,6 @@ console.log('%c HI', 'color: firebrick')
 window.addEventListener("DOMContentLoaded", function() {
 
     const dogsList = document.getElementById("dog-breeds")
-    const filterOptions = document.getElementById("breed-dropdown")
-
 
     function fetchDogsInfo() {
         fetch("https://dog.ceo/api/breeds/image/random/4")
@@ -32,39 +30,39 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
 
-    function addBreeds(res) {
-        const breedsListContainer = document.createElement("ul")
-        dogsList.appendChild(breedsListContainer)
+        function addBreeds(res) {
+            const breedsListContainer = document.createElement("ul")
+            dogsList.appendChild(breedsListContainer)
 
-        let breedsList = []
+            let breedsList = []
 
-        for (const key in res.message) {
-            let dogBreeds = createDogBreeds(res, key);
-            breedsList.push(dogBreeds)
-        }
+            for (const key in res.message) {
+                let dogBreeds = createDogBreeds(res, key);
+                breedsList.push(dogBreeds)
+            }
 
-        breedsList.flat(2).forEach(function(element) {
-            let dogElement = document.createElement("li")
-            dogElement.textContent = element
-            breedsListContainer.appendChild(dogElement)
-            dogElement.addEventListener("click", function() {
-                colours = ["Navy", "Magenta", "Maroon", "Red", "LawnGreen", "Indigo", "Gold", "DodgerBlue", "DimGrey", "Cyan", "OrangeRed", "Pink"]
-                dogElement.style.color = colours[Math.floor(Math.random()*colours.length)]
-            } )
-        })
-    }
-
-    function createDogBreeds(res, key) {
-        dogBreeds = []
-        if (res.message[key].length == 0) {
-            dogBreeds.push(key)
-        } else {
-            res.message[key].forEach(function(value) {
-                dogBreeds.push(`${value} ${key}`)
+            breedsList.flat(2).forEach(function(element) {
+                let dogElement = document.createElement("li")
+                dogElement.textContent = element
+                breedsListContainer.appendChild(dogElement)
+                dogElement.addEventListener("click", function() {
+                    colours = ["Navy", "Magenta", "Maroon", "Red", "LawnGreen", "Indigo", "Gold", "DodgerBlue", "DimGrey", "Cyan", "OrangeRed", "Pink"]
+                    dogElement.style.color = colours[Math.floor(Math.random()*colours.length)]
+                })
             })
         }
-        return dogBreeds
-    }
+
+        function createDogBreeds(res, key) {
+            dogBreeds = []
+            if (res.message[key].length == 0) {
+                dogBreeds.push(key)
+            } else {
+                res.message[key].forEach(function(value) {
+                    dogBreeds.push(`${value} ${key}`)
+            })
+            }
+            return dogBreeds
+        }
 
     fetchDogsInfo()
     fetchBreedInfo()
