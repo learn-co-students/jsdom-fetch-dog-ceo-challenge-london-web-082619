@@ -36,9 +36,33 @@ function renderDogs(jsonImages){
 //     }
 // }
 
+//Challenge 3
+
+function fetchDogBreeds(){
+    return fetch("https://dog.ceo/api/breeds/list/all") //data -> message: {[array]}
+    .then(resp => resp.json())
+    .then(jsonBreeds => renderDogBreeds(jsonBreeds));
+};
+
+function renderDogBreeds(jsonBreeds){
+    const main3 = document.querySelector("#dog-breeds") //ターゲット設定
+　　for (const key in jsonBreeds["message"]) {
+    const li = document.createElement("li") //挿入先のタグを作成
+    li.innerHTML = key
+    li.style.color = "black";
+    li.addEventListener("click", function(){
+       if (li.style.color === "black") {
+        li.style.color = "blue";
+        }
+    })
+    main3.appendChild(li);
+
+  }
+}
 
 
 document.addEventListener("DOMContentLoaded", function(){
     fetchDogs(); //Challenge 1
     fetchDogBreeds(); //Challenge 2 and Challenge 3
 });
+
