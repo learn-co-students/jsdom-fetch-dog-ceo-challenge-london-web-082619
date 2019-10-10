@@ -31,7 +31,7 @@ function renderDogs(jsonImages){
 //     const main2 = document.querySelector("#dog-breeds"); // in an ul. ul must be used with liS
 //     for (const key in jsonBreeds["message"]){ //挿入開始
 //         const li = document.createElement("li") //ulはliが必要
-//         li.innerHTML = key
+//         li.innerHTML = key // 挿入するものを指定
 //         main2.appendChild(li)
 //     }
 // }
@@ -48,10 +48,10 @@ function renderDogBreeds(jsonBreeds){
     const main3 = document.querySelector("#dog-breeds") //ターゲット設定
 　　for (const key in jsonBreeds["message"]) {
     const li = document.createElement("li") //挿入先のタグを作成
-    li.innerHTML = key
-    li.style.color = "black";
+    li.innerHTML = key　 // 挿入するものを指定
+    li.style.color = "black";　 // フォントのいろ
     li.addEventListener("click", function(){
-       if (li.style.color === "black") {
+       if (li.style.color === "black") { //eventの設定
         li.style.color = "blue";
         }
     })
