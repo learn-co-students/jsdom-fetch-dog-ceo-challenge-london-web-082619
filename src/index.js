@@ -38,6 +38,8 @@ function fetchBreeds(){
 
 function updateBreedList(breeds){
     let ul = document.getElementById('dog-breeds');
+    removeChildren(ul);
+    addBreedDropdownEventListener();
     breeds.forEach(breed => addBreed(breed));
 };
 
@@ -48,14 +50,23 @@ function addBreed(breed){
     li.innerText = breed;
     ul.appendChild(li)
 };
+
 //----------------------------------challenge4-----------------------------
 
 function addBreedDropdownEventListener(){
     let breedDropDown = document.getElementById('breed-dropdown');
-    breedDropDown.addEventListener("click", function(event){
+    breedDropDown.addEventListener('change', function(event){
         selectBreedsStartingWith(event.target.value);
     });
 }
+
+function removeChildren(element) {
+    let child = element.lastElementChild;
+    while (child) {
+      element.removeChild(child);
+      child = element.lastElementChild;
+    }
+  }
 
 function selectBreedsStartingWith(letter){
     updateBreedList(breeds.filter(breed => breed.startsWith(letter)))
